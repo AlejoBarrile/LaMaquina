@@ -1,0 +1,92 @@
+* {
+    border: 0;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+.card-body{
+  height: 400px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.card-title{
+  font-size: 40px;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+
+.cartas{
+    margin: 100px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    align-items: center;    
+    align-content: center;
+    gap: 30px;
+}
+
+.card[id$="hielo"]{background-color: aqua;}
+
+.card[id$="agua"]{background-color: blue;}
+
+.card[id$="vida"]{
+    background-color: green;
+}
+.card[id$="muerte"]{
+  background-color: gray;
+}
+.card[id$="viento"]{ background-color: violet;}
+
+.card[id$="magia"]{ background-color: rgb(212, 0, 255);}
+
+.card[id$="fuego"]{ background-color: rgb(203, 17, 17);
+
+}
+
+.card[id$="tecnología"]{ background-color: orange;}
+
+.card[id$="tierra"]{ background-color: rgb(88, 37, 37);
+
+}
+
+.card[id$="Tiempo"]{ background-color:  yellow;}
+
+.card[id$="Luz"]{ background-color: aliceblue;
+
+
+}
+
+.card[id$="Oscuridad"]{
+  background-color: rgb(50, 44, 44);
+  color: white;
+}
+
+#positiva{ border-radius: 80%;
+  border-style: solid;
+          border-width: 7px;
+          border-color: rgb(255, 0, 0)}
+
+#negativa{ border-radius: 80%;
+  border-style: solid;
+  border-width: 7px;
+  border-spacing: 50px;
+
+  border-color: black}
+
+#neutral{ border-radius: 80%;
+  border-style: solid;
+  border-width: 7px;
+
+  border-spacing: 50px;
+  border-color: white}
+
+
+
+
+
