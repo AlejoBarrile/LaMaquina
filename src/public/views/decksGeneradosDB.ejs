@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ÉTER | Database</title>
+    <link rel="icon" href="../../assets/icono.jpg" >
+    <link href="../css/style.css"  rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+</head>
+<body class="fondo">
+
+
+
+    <div class="main">
+        <div>
+            <button id="logout"  class="button-35 m-4" role="button">LOGOUT</button>
+
+            <a href="/home"> <button class="button-19 text-dark" role="button"> HOME </button></a>
+
+            <h1  class="text-center pb-4 m-lg-5">LA MÁQUINA FRAGMENTADORA DEL ÉTER</h1>
+            <hr>
+        </div>
+
+        <div>
+            <h3  class="text-center p-4">LOS DECKS QUE HA GENERADO: </h3>
+            <h3 id="byUser" class="text-center p-4 text-danger"></h3>
+
+            <div class="decks" id="divDecks">
+                
+                
+                
+            </div>
+        </div>
+     
+    </div>
+
+
+    
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+    <script type="module" src="../helpers/RenderDecksDB.mjs"></script>
+    <script type="module" src="../helpers/Logout.mjs"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+</body>
+
+    
+</html>

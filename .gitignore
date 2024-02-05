@@ -1,0 +1,29 @@
+# Node.js
+node_modules/
+
+# Entorno de desarrollo
+.env
+
+# Archivos de configuración locales
+eterDB.json
+utils.mjs
+
+# Archivos generados durante el desarrollo
+
+
+# Archivos de configuración de IDE
+
+
+# Archivos de respaldo y temporales
+
+
+# Archivos específicos de tu aplicación
+/decks/codeDecks0.mjs
+/decks/codeDecks1.mjs
+/decks/codeDecks2.mjs
+/decks/codeDecks3.mjs
+/decks/codeDecks4.mjs
+/decks/codeDecks5.mjs
+/decks/codeDecks6.mjs
+/decks/codeDecks7.mjs
+/assets/

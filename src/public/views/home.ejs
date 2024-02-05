@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ÉTER | Home</title>
+    <link rel="icon" href="../../assets/icono.jpg" >
+
+    <link href="../css/style.css"  rel="stylesheet">
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+</head>
+<body class="fondo">
+
+
+
+    <div class="main">
+        
+        <div class="d-flex flex-column flex-wrap justify-content-around align-content-center  pt-5">
+            <div class="d-flex flex-row flex-wrap justify-content-around align-content-center ">
+                <img src="/assets/isoblanco.jpg" class="logoeter" alt="LOGO ETER"></img>
+                <button class="button-24" role="button"></button>
+                <button id="logout"  class="button-35" role="button">LOGOUT</button>
+                <a  href="./decksGeneradosDB.ejs"   ><button class="button-32" >VER TUS DECKS</button></a>
+
+
+                <img src="/assets/isoblanco.jpg" class="logoeter" alt="LOGO ETER"></img>
+
+                <br>
+                
+            </div>
+            <h1  class="text-center pb-4 m-lg-5">LA MÁQUINA FRAGMENTADORA DEL ÉTER</h1>
+                <hr>
+        </div>
+        <div  >
+            <nav>
+                <h3>Escoja el grado del deck que desea generar</h3>
+
+                <ul class="links">
+                    <a href="./mazoNoCompetitivo.ejs"  ><button id="0" class="button-49" role="button"> NO COMPETITIVO</button></a>
+                    <a href="./mazoGrado0.ejs"  ><button id="1" class="button-49" role="button"> Decks grado 0</button></a>
+                    <a href="./mazoGrado1.ejs"  ><button id="2" class="button-49" role="button"> Decks grado 1</button></a>
+                    <a href="./mazoGrado2.ejs"  ><button id="3" class="button-49" role="button"> Decks grado 2</button></a>
+                    <a href="./mazoGrado3.ejs"  ><button id="4" class="button-49" role="button"> Decks grado 3</button></a>
+                    <a href="./mazoGrado4.ejs"  ><button id="5" class="button-49" role="button"> Decks grado 4</button></a>
+                    <a href="./mazoGrado5.ejs"  ><button id="6" class="button-49" role="button"> Decks grado 5</button></a>
+                    <a href="./mazoGradoETER.ejs"  ><button id="7" class="button-49" role="button"> Decks grado ETER</button></a>                
+
+                    
+
+                    
+                </ul>
+            </nav>
+        </div>
+     
+    </div>
+
+
+    
+    <script src="../helpers/Logout.mjs"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+</body>
+
+    
+</html>

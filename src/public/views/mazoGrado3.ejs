@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ÉTER DG-3</title>
+    <link rel="icon" href="../../assets/icono.jpg" >    <link href="../css/style.css"  rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+</head>
+<body class="fondo">
+
+
+
+    <div>
+        <div class="main"> 
+            <button id="logout"  class="button-35 m-4" role="button">LOGOUT</button>
+
+            <a href="/home"> <button class="button-19 text-dark" role="button"> HOME </button></a>
+
+            <h1 class="text-center pb-4 m-lg-5">MAZO GENERADO</h1>
+            <h2 class="text-center pb-4 m-lg-5"> Grado 3 </h2>
+            <div  class="text-center pb-4 m-lg-5">
+                <h3 id="nombre-random"></h3>
+            </div>
+        </div>
+            <form class="form" action="">
+                <input id="input-nombre" placeholder="Ingrese un nombre para su mazo" type="text">
+                <button id="random-name" class="btn btn-info"> Nombre Aleatorio</button>
+                <button id="save-deck" class="btn btn-success" > Guardar Deck</button>
+            </form>
+
+        <div class="cartas" id="cardsContainer">
+            
+        </div>
+    </div>
+
+
+    
+    <div id="elementos-barra-progreso">
+        <p class="titulo-barras">Estadísticas de Elementos</p>
+
+        <!-- Aquí se generarán las barras de progreso dinámicamente -->
+    </div>
+
+    <div id="elementos-niveles">
+        <p class="titulo-barras">Estadísticas de Niveles</p>
+
+        <!-- Aquí se generarán las barras de progreso dinámicamente -->
+    </div>
+     
+
+    <script type="module" src="../decks/codeDecks4.mjs"> </script>
+    <script type="module" src="../helpers/RenderFunctions4.mjs"></script>
+    <script type="module" src="../helpers/Logout.mjs"></script>
+    <script type="module" src="../helpers/ActionFunctions.mjs"></script>
+
+    
+
+    
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+</body>
+
+    
+</html>
