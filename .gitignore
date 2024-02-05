@@ -6,7 +6,6 @@ node_modules/
 
 # Archivos de configuración locales
 eterDB.json
-utils.mjs
 
 # Archivos generados durante el desarrollo
 
@@ -18,12 +17,12 @@ utils.mjs
 
 
 # Archivos específicos de tu aplicación
-/decks/codeDecks0.mjs
-/decks/codeDecks1.mjs
-/decks/codeDecks2.mjs
-/decks/codeDecks3.mjs
-/decks/codeDecks4.mjs
-/decks/codeDecks5.mjs
-/decks/codeDecks6.mjs
-/decks/codeDecks7.mjs
-/assets/
+src/public/decks/codeDecks0.mjs
+src/public/decks/codeDecks1.mjs
+src/public/decks/codeDecks2.mjs
+src/public/decks/codeDecks3.mjs
+src/public/decks/codeDecks4.mjs
+src/public/decks/codeDecks5.mjs
+src/public/decks/codeDecks6.mjs
+src/public/decks/codeDecks7.mjs
+src/assets/ilustraciones/
