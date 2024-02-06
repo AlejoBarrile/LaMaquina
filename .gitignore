@@ -17,12 +17,6 @@ eterDB.json
 
 
 # Archivos específicos de tu aplicación
-src/public/decks/codeDecks0.mjs
-src/public/decks/codeDecks1.mjs
-src/public/decks/codeDecks2.mjs
-src/public/decks/codeDecks3.mjs
-src/public/decks/codeDecks4.mjs
-src/public/decks/codeDecks5.mjs
-src/public/decks/codeDecks6.mjs
-src/public/decks/codeDecks7.mjs
+src/public/decks/
 src/assets/ilustraciones/
+src/assets/info.js
