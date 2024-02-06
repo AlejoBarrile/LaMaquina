@@ -1,0 +1,6 @@
+node_modules/
+.env
+eterDB.json
+src/assets/ilustraciones/
+src/public/decks/
+src/assets/info.js
