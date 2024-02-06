@@ -7,6 +7,9 @@ import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword, si
 import { agregarImagenes, eliminarDesdeArroba } from "./public/helpers/ActionFunctions.mjs";
 import dotenv from 'dotenv';
 
+dotenv.config();  // Cargar variables de entorno desde .env
+
+
 
 
 
