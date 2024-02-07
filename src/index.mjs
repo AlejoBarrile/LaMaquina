@@ -5,10 +5,10 @@ import { initializeApp } from 'firebase/app';
 import { getFirestore, collection, addDoc, query, where, getDocs, orderBy, limit } from 'firebase/firestore';
 import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword, signOut, setPersistence, browserSessionPersistence  } from "firebase/auth";
 import { agregarImagenes, eliminarDesdeArroba } from "./public/helpers/ActionFunctions.mjs";
-import dotenv from 'dotenv';
-
-dotenv.config();  // Cargar variables de entorno desde .env
-
+/* import dotenv from 'dotenv';
+ */
+/* dotenv.config();  // Cargar variables de entorno desde .env
+ */
 
 
 
