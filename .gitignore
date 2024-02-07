@@ -68,6 +68,7 @@ node_modules/
 #FIREBASE QUE NO QUIERO
 .firebase.json
 .firebaserc
-.firebase-debug.log
+firebase-debug.log
 .github/workflows/
 public/
+.eterDB.json
