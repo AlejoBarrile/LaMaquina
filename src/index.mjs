@@ -19,8 +19,7 @@ dotenv.config();  // Cargar variables de entorno desde .env
 
     // SERVER CONFIG
     const app =   express();
-    const puerto = 8070;
-    dotenv.config();
+    const puerto = process.env.PORT || 8070;
     const httpServer = app.listen(puerto, () => {
     console.log(`Server listening on port ${puerto}`)});
 
@@ -50,7 +49,7 @@ app.use('/assets', express.static(__dirname +'/assets'));
 // Your web app's Firebase configuration
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
-  apiKey: process.env.FIREBASE_API_KEY,
+  apiKey: "AIzaSyBHtrRf5V036uNJ0ArZzzIS1mhZ2Dw9QNk",
   authDomain: process.env.FIREBASE_AUTH_DOMAIN,
   projectId: process.env.FIREBASE_PROJECT_ID,
   storageBucket: process.env.FIREBASE_STORAGE_BUCKET,
@@ -397,3 +396,6 @@ app.post("/eliminar", requireAuth, async (req,res) => {
 // FALTA FUNCION VER CARTAS. POSIBILIDAD DE EDITAR Y VOLVER A GUARDAR.
 
 
+//PROBLEMA CON UPLOAD, REVISAR TODO DEVUELTA, ACOMODAR CARPETA PUBLIC PARA QUE HAGA BIEN EL UPLOAD.
+// TRABAJAR SOBRE EL .ENV Y LOS PROBLEMAS CON LAS VARIABLES DE ENTORNO.
+// ESTOY CERCA DE LOGRARLO
