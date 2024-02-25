@@ -1,10 +1,10 @@
 import express from "express"
-import __dirname from "./utils.mjs";
-import { ManagerDeck } from "./public/helpers/ManagerDeck.mjs";
+import __dirname from "./src/utils.mjs";
+import { ManagerDeck } from "./src/public/helpers/ManagerDeck.mjs";
 import { initializeApp } from 'firebase/app';
 import { getFirestore, collection, addDoc, query, where, getDocs, orderBy, limit } from 'firebase/firestore';
 import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword, signOut, setPersistence, browserSessionPersistence  } from "firebase/auth";
-import { agregarImagenes, eliminarDesdeArroba } from "./public/helpers/ActionFunctions.mjs";
+import { agregarImagenes, eliminarDesdeArroba } from "./src/public/helpers/ActionFunctions.mjs";
 import dotenv from 'dotenv';
 import session from 'express-session';
 

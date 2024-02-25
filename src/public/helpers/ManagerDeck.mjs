@@ -1,6 +1,6 @@
 import { error } from "console";
 import fs, { copyFileSync, write } from "fs";
-import { fbapp } from "../../index.mjs";
+import { fbapp } from "../../../index.mjs";
 import { getFirestore, collection, addDoc, doc, getDocs, getDoc, query, where, orderBy, limit, deleteDoc, updateDoc, writeBatch, setDoc} from 'firebase/firestore';
 
 // SISTEMA DE GUARDADO PARA MAZOS NO COMPETITIVOS
