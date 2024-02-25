@@ -335,6 +335,7 @@ eventoPerspectiva(cartaId,mazo, deck)
     "El Sol de Medianoche",
     "El Cielo Estrellado",
     "El Renacer de las Sombras",
+    "Música de Campeones",
     "El Guardián del Arco",
     "El Ecos del Olvido",
     "El Destino Luminoso",
