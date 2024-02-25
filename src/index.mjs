@@ -5,16 +5,10 @@ import { initializeApp } from 'firebase/app';
 import { getFirestore, collection, addDoc, query, where, getDocs, orderBy, limit } from 'firebase/firestore';
 import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword, signOut, setPersistence, browserSessionPersistence  } from "firebase/auth";
 import { agregarImagenes, eliminarDesdeArroba } from "./public/helpers/ActionFunctions.mjs";
-/* import dotenv from 'dotenv';
- */
-/* dotenv.config();  // Cargar variables de entorno desde .env
- */
+import dotenv from 'dotenv';
+import session from 'express-session';
 
-
-
-
-
-
+dotenv.config();  // Cargar variables de entorno desde .env
 
 
     // SERVER CONFIG
@@ -49,7 +43,7 @@ app.use('/assets', express.static(__dirname +'/assets'));
 // Your web app's Firebase configuration
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
-  apiKey: "AIzaSyBHtrRf5V036uNJ0ArZzzIS1mhZ2Dw9QNk",
+  apiKey: process.env.FIREBASE_API_KEY,
   authDomain: process.env.FIREBASE_AUTH_DOMAIN,
   projectId: process.env.FIREBASE_PROJECT_ID,
   storageBucket: process.env.FIREBASE_STORAGE_BUCKET,
@@ -64,20 +58,7 @@ const firebaseConfig = {
 
 
 const auth = getAuth(fbapp)
-setPersistence(auth, browserSessionPersistence)
-  .then(() => {
-    // Existing and future Auth states are now persisted in the current
-    // session only. Closing the window would clear any existing state even
-    // if a user forgets to sign out.
-    // ...
-    // New sign-in will be persisted with session persistence.
-    return signInWithEmailAndPassword(auth, email, password);
-  })
-  .catch((error) => {
-    // Handle Errors here.
-    const errorCode = error.code;
-    const errorMessage = error.message;
-  });
+
 
 export {fbapp}
   
@@ -95,14 +76,13 @@ const requireAuth = (req, res, next) => {
     res.redirect('/');
   }
 };
-  // EL PROBLEMA DE LA LECTURA DEL REQ SESSION ESTABA EN EL DESTROY(), AHORA QUE LO BORRE EL SERVIDOR LEE EL USERNAME Y ME PERMITE NAVEGAR
-  // PERO UNA VEZ Q INICIO SESION TENGO QUE BUSCAR LA FORMA DE QUE SI EL USUARIO CIERRA LA PAGINA, SE HAGA LOGOUT
-  // TENGO QUE VER PORQUE CUANDO VOY DESDE UN MAZO AL HOME ME LLEVA AL LOGIN DE VUELTA
 
 //CONFIGURACION DE VISTAS
 app.get('/', (req, res) => {
   res.render("login.ejs");
 });
+
+
 app.get('/home', requireAuth, (req, res) => {
 
     res.render("home.ejs",);
@@ -172,34 +152,16 @@ try{
   console.error('Error al obtener mazos:', error);
 }
 
-/* 
-app.get('/getDeckById', async (req, res) => {
-  try{
-    const id = req.query.id;
 
-    const deck = await MD.getDeckById(id)
-  
-    // Envía la información del mazo como respuesta
-    res.send(deck);
-
-  }catch(error){
-    console.error('Error al obtener mazos:', error);
-    res.status(500).send('Error interno del servidor');
-  }
-
-});
- */
 
 
 app.post("/img", async (req, res) => {
     try{
       const mazo = req.body
-   console.log("LLegue aca: "+ mazo)
 
-    const ruta = `${__dirname}/src/assets/ILUSTRACIONES`
-   let mazoImg = await agregarImagenes(mazo, ruta);
-   console.log("tambien llegue aca: "+mazoImg)
-  res.json(mazoImg);
+      const ruta = `${__dirname}/src/assets/ILUSTRACIONES`
+      let mazoImg = await agregarImagenes(mazo, ruta);
+      res.json(mazoImg);
     }
     catch(error){
       res.status(500).send({status:"error", message:"Error al agregar imagenes: "+error})
@@ -210,6 +172,9 @@ app.post("/img", async (req, res) => {
 
 
 })
+
+//CODIGO UTILIZADO POR UNICA VEZ PARA REGISTRAR USUARIOS ETER
+
 /* app.post("/register", async (req,res) => {
 
   const { email, password } = req.body;
@@ -237,30 +202,37 @@ app.post("/img", async (req, res) => {
   }
 })
  */
+
+
 app.post('/login', async (req, res) => {
 
   const { email, password } = req.body;
-  console.log(email, password)
 
+  if(req.body.email == '' || req.body.password == ''){
+      res.status(404).send({status:"error", message: "Usuario inválido." })
+  }else{
  
-  try {
-     await signInWithEmailAndPassword(auth, email, password)
-      .then((userCredential) => {
-        // Signed in 
-        const user = (userCredential) 
-        console.log("MOSTRANDO CREDENCIAL DESDE EL LOGIN: "+eliminarDesdeArroba(user.user.email))
-        res.redirect("/home")
-        // ...
-      })
-      .catch((error) => {
-        console.log(error)
-        res.status(400).send({status:"error", message:"Usuario no registrado."})
-      });
-        
-  } catch (error) {
-    console.error('Error al iniciar sesión:', error.message);
-    throw error;
-  }
+    try {
+        await signInWithEmailAndPassword(auth, email, password)
+        .then((userCredential) => {
+          // Signed in 
+          const user = (userCredential) 
+          console.log("MOSTRANDO CREDENCIAL DESDE EL LOGIN: "+eliminarDesdeArroba(user.user.email))
+          
+              res.status(200).send({status: "OK", message:"Login exitoso."})
+
+          // ...
+        })
+        .catch((error) => {
+          console.log(error)
+          res.status(404).send({status:"error", message:"Usuario no registrado."})
+        });
+              
+        } catch (error) {
+          console.error('Error al iniciar sesión:', error.message);
+          throw error;
+        }
+      }
     });
 
     
@@ -388,12 +360,33 @@ app.post("/eliminar", requireAuth, async (req,res) => {
 
 })
 
+
+app.get('/getDeckById/:id', requireAuth, async (req, res) => {
+  try{
+    const auth = getAuth(fbapp);
+    const user = eliminarDesdeArroba(auth.currentUser.email)
+    const {id} = req.params;
+    const deck = await MD.getDeckById(id, user)
+
+    if(deck){
+        res.send(deck)
+    }  else{
+      res.status(404).json({ error: 'Deck no encontrado' });
+
+    }
+  }catch(error){
+    console.error('Error al manejar solicitud GET:', error);
+    res.status(500).send('Error interno del servidor');
+  }
+
+});
+ 
+
 // CHEQUEAR LO COMETANDO, REVISAR CODIGOS.
 // PENSAR EN LA PROTECCION DE CREDENCIALES, ILUSTRACIONES Y ALGORITMOS DE MAZOS
 // TRABAJAR  DESDE RENDER0 Y LUEVO VOLCARLO A LOS OTROS
 // FALTA AGREGAR ANGELES (DEJAR PARA LO ULTIMO Y ACOMODAR DE VUELTA TODOS)
 // ARREGLAR ESTADISTICAS
-// FALTA FUNCION VER CARTAS. POSIBILIDAD DE EDITAR Y VOLVER A GUARDAR.
 
 
 //PROBLEMA CON UPLOAD, REVISAR TODO DEVUELTA, ACOMODAR CARPETA PUBLIC PARA QUE HAGA BIEN EL UPLOAD.

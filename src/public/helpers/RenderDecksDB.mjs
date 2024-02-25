@@ -3,21 +3,57 @@
 
 const byUser = document.getElementById("byUser")
 const decksContainer = document.getElementById("divDecks")
-const divCartas = document.querySelectorAll(".divCartas")
 
 
-/* const mostrarCartasDB = (deck) =>{
+ const obtenerCartasDB = (id) =>{
 
-  const mazo = deck.mazo
-  console.log(mazo)
-  const divCorrecto = divCartas[deck.id-1]
-  console.log(divCorrecto)
-  mazo.map((card)=>{
-    divCorrecto.innerHTML += `<h2>${card.nombre}</h2>
-      `
-
+  fetch(`/getDeckById/${id}`, {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+    },
   })
-} */
+  .then((response) => {
+     return response.json(); // Esta línea devuelve otra promesa
+  })
+  .then((deck) => {
+    mostrarCartasDB(deck);
+  })
+  .catch((error) => {
+    console.error('Error:', error);
+  });
+  
+};
+
+const mostrarCartasDB = (deck)=>{
+  const mazo = deck.mazo
+  const divCartas = document.querySelectorAll(".modal-body")
+  let divCorrecto = '' 
+  divCartas.forEach((div) => {
+    if(div.id == deck.id){
+          divCorrecto = div
+    }})
+  divCorrecto.innerHTML = "";
+  const cardElement = document.createElement("div");
+
+  mazo.forEach((card) => {
+    cardElement.innerHTML += `
+                  <ul class="listado_cartas">
+                      <li>   <img src="${card.img}" class="imagen"></img>   </li>
+                      <li >${card.nombre}</li>
+                      <li >ID: ${card.id}</li>
+
+
+                  </ul>
+              `;
+              divCorrecto.appendChild(cardElement);
+
+  });
+
+  
+}
+
+
 
 const getDecks =()=>{
   fetch('/getDecks', {
@@ -66,14 +102,16 @@ const eliminarDeFirebase =(id) =>{
                 icon: "error"
               });  
             }else{
+           
               Swal.fire({
                 title: "Deck eliminado",
-                text: "MAZO ELIMINADO CON ÉXITO DE LA BASE DE DATOS decksv1",
+                text: "DECK ELIMINADO CON ÉXITO DE LA BASE DE DATOS decksv1",
                 icon: "success"
               });  
-                const divDeck = document.getElementById(`${id}`)
-                divDeck.classList.add("d-none")
-                getDecks()
+                  
+                  //CORREGIR LA RENDERIZACION DE LOS MAZOS DESPUES DE BORRAR 1
+                  //CORREGIR LA SESION DE USUARIOS PARA Q NO HAYA CONFLICTOM
+                
                 }
             
 
@@ -89,18 +127,7 @@ const eliminarDeFirebase =(id) =>{
 
       
     }
-    const botonesEliminar = document.querySelectorAll('.eliminarDeck');      
-    botonesEliminar.forEach((boton) => {
-     boton.addEventListener('click', (e) => {
-         e.preventDefault()
-         let id = e.target.id
-         eliminarDeFirebase(id)
 
-     
-
-
- })
-})
 
 
 
@@ -111,10 +138,10 @@ const eliminarDeFirebase =(id) =>{
      decks.sort((a, b) => a.id - b.id);
       decks.map((deck) => {
       
-        decksContainer.innerHTML += `<div id="${deck.id}" class="card" style="width: 30rem ">
-            <div class="card-body ">
+        decksContainer.innerHTML += `<div id="${deck.id}" class="card d-flex justify-content-center text-center" style="width: 30rem ">
+            <div class="card-body d-flex align-content-center text-center ">
                 <div class="card-title "> 
-                  <ul>
+                  <ul class="text-center">
                      <li >ID: ${deck.id}</li>
                   
                     <li >${deck.nombre}</li>
@@ -126,13 +153,28 @@ const eliminarDeFirebase =(id) =>{
                   </ul>
                 </div>
                 <button class="eliminarDeck" id="${deck.id}" >Eliminar Deck</button>
-                <button class="verCartas" id="${deck.id}" >Ver Cartas</button>
+                <button   type="button" data-bs-toggle="modal" data-bs-target="#exampleModal${deck.id}" class="verCartas" id="${deck.id}" >Ver Cartas</button>
               
             </div>
+                  <div class="modal fade" id="exampleModal${deck.id}" tabindex="-1" aria-labelledby="modal${deck.id}Label" aria-hidden="true">
+                    <div class="modal-dialog">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h1 class="modal-title fs-5 text-center" id="modal${deck.id}Label">CARTAS DEL DECK <i>${deck.nombre}</i></h1>
+                          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body" id='${deck.id}'>
+                          
+                        </div>
+                        <div class="modal-footer">
+                          <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Done</button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
             </div>`;
       });
-
-
 
 
       const botonesEliminar = document.querySelectorAll('.eliminarDeck');      
@@ -142,42 +184,20 @@ const eliminarDeFirebase =(id) =>{
            let id = e.target.id
            eliminarDeFirebase(id)
   
-       
-
-
    })
- })
+  })
       
-  /*     const verCartas = document.querySelectorAll('.verCartas')
-      console.log(verCartas)
-  // Agrega un evento a cada botón
-          verCartas.forEach((boton) => {
+      const botonerVerCartas = document.querySelectorAll('.verCartas')
+          // Agrega un evento a cada botón
+          botonerVerCartas.forEach((boton) => {
             boton.addEventListener('click', (e) => {
-              let idDeck = e.target.id; // Extrae el ID de la carta
-              fetch(`/getDeckById?id=${idDeck}`, {
-                method: 'GET',
-                headers: {
-                  'Content-Type': 'application/json',
-                },
-              })
-              .then((response) => {
-                if (!response.ok) {
-                  console.log(`Network response was not ok: ${response.status}`);
-                }
-                return response.json(); // Esta línea devuelve otra promesa
-              })
-              .then((deck) => {
-                mostrarCartasDB(deck);
-              })
-              .catch((error) => {
-                console.error('Error:', error);
-              });
-              
-          });
+              e.preventDefault()
+              let id = e.target.id; // Extrae el ID del deck
+              obtenerCartasDB(id)
 
 
-
-          }) */
+          })
+        })
     };
   
 

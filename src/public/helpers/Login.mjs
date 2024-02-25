@@ -45,8 +45,13 @@ async function login(user)  {
       }
       
     }).then((response) =>{
-      console.log(response)
+      if(response.status == 200){
       window.location.href = '/home'
+      }else{
+        if(response.status == 404){
+          alert("INGRESE UN USUARIO VÁLIDO.")
+        }
+      }
     }).catch((error) => {
     console.error('Error:', error);
     alert("ERROR, CREDENCIALES DESCONOCIDAS.")

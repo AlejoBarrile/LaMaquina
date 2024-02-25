@@ -41,30 +41,23 @@ class ManagerDeck {
       }
  
 
-      async getDeckById(id) {
+      async getDeckById(id, user) {
         try {
-          // Realiza una consulta para obtener el documento con el ID especificado
-          const querySnapshot = await getDocs(query(collection(this.db, 'decksv1'), where('id', '==', id)));
-    
-          // Verifica si hay algún documento en el resultado
-          if (!querySnapshot.empty) {
-            // Obtiene el primer documento (asumimos que solo hay uno con ese ID)
-            const deckDoc = querySnapshot.docs[0];
-    
-            // Devuelve los datos del mazo
-            return deckDoc.data();
-          } else {
-            // Devuelve null si no se encontró ningún mazo con ese ID
-            return null;
-          }
-        } catch (error) {
+          const deckId = []
+          const docRef = (collection(this.db, 'decksv1'))
+          const querySnapshot = await getDocs(query(docRef, where("by", "==", user)))
+          querySnapshot.forEach((doc) => {
+            deckId.push({...doc.data() });
+          });
+          const deckEncontrado = deckId.find((deck) => deck.id == id)
+          return deckEncontrado
+        } 
+        catch (error) {
           console.error('Error al obtener el mazo por ID:', error);
         }
       }
 
 
-
-      //RECORDAR FUNCION Q CORRIJA LOS IDSsssssssssssssss
 
       async  deleteDeck(user,deckId) {
         const q = query(collection(this.db, "decksv1"), where("by", "==", user));

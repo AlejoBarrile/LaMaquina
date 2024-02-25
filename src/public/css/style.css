@@ -800,3 +800,19 @@ font-weight: bold;}
 #random-name{
 
   font-weight: bold;}
+
+
+  .imagen{
+    width: 100px;
+    height: 100px;
+    padding: 5px;
+  }
+
+  .listado_cartas{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    list-style-type: none;
+    text-align: center;
+    margin: 5px;
+  }
