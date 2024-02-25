@@ -1,5 +1,3 @@
 {
-    "framework": {
-      "node": "18.x"
-    }
+    "framework": "node"
   }
