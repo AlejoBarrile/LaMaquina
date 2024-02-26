@@ -78,41 +78,41 @@ const requireAuth = (req, res, next) => {
 
 //CONFIGURACION DE VISTAS
 app.get('/', (req, res) => {
-  res.render("login.ejs");
+  res.render("login");
 });
 
 
 app.get('/home', requireAuth, (req, res) => {
 
-    res.render("home.ejs",);
+    res.render("home",);
 
 })
 
 app.get('/mazoNoCompetitivo.ejs',requireAuth,(req, res) => {
-    res.render("mazoNoCompetitivo.ejs");
+    res.render("mazoNoCompetitivo");
 
 
 });
 app.get('/mazoGrado0.ejs', requireAuth,(req, res) => {
-    res.render("mazoGrado0.ejs");
+    res.render("mazoGrado0");
 
   
 });
 app.get('/mazoGrado1.ejs', requireAuth, (req, res) => {
-      res.render("mazoGrado1.ejs");
+      res.render("mazoGrado1");
 
 });
 app.get('/mazoGrado2.ejs', requireAuth, (req, res) => {
-      res.render("mazoGrado2.ejs");
+      res.render("mazoGrado2");
 
 });
 app.get('/mazoGrado3.ejs', requireAuth, (req, res) => {
-      res.render("mazoGrado3.ejs");
+      res.render("mazoGrado3");
 
 
 });
 app.get('/mazoGrado4.ejs', requireAuth, (req, res) => {
-      res.render("mazoGrado4.ejs");
+      res.render("mazoGrado4");
 
 });
 app.get('/mazoGrado5.ejs', requireAuth, (req, res) => {
@@ -121,16 +121,16 @@ app.get('/mazoGrado5.ejs', requireAuth, (req, res) => {
  
 });
 app.get('/mazoGradoETER.ejs', requireAuth, (req, res) => {
-      res.render("mazoGradoETER.ejs");
+      res.render("mazoGradoETER");
 
 
 });
 app.get('/decksGeneradosDB.ejs',requireAuth, (req, res) => {
-      res.render("decksGeneradosDB.ejs");
+      res.render("decksGeneradosDB");
 
 });
 app.get('/cartasMazoDB.ejs',requireAuth, (req, res) => {
-  res.render("cartasMazoDB.ejs");
+  res.render("cartasMazoDB");
 
 });
 
