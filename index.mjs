@@ -6,7 +6,6 @@ import { getFirestore, collection, addDoc, query, where, getDocs, orderBy, limit
 import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword, signOut, setPersistence, browserSessionPersistence  } from "firebase/auth";
 import { agregarImagenes, eliminarDesdeArroba } from "./src/public/helpers/ActionFunctions.mjs";
 import dotenv from 'dotenv';
-import session from 'express-session';
 
 dotenv.config();  // Cargar variables de entorno desde .env
 
